@@ -23,7 +23,7 @@ const WETH = makeEthersBase(WETHArtifact);
 
 Or you can extend it`
 
-``js
+```js
 
 class WETH extends makeEthersBase(WETHArtifact) {
   async transfer(target, amount) {
