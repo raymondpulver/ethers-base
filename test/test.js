@@ -8,9 +8,21 @@ const {
   }
 } = require('hardhat');
 const constants = require('@ethersproject/constants');
+const FactoryArtifact = require('@primitivefi/contracts/deployments/rinkeby/Factory');
+
 
 const { JsonRpcProvider } = require('@ethersproject/providers');
 const { makeEthersBase } = require('../');
+
+const Factory = class extends makeEthersBase(FactoryArtifact) {
+  static get networks() {
+    return {
+      '4': {
+        address: FactoryArtifact.address
+      }
+    }
+  }
+};
 
 const WETH = makeEthersBase(require('canonical-weth/build/contracts/WETH9'));
 
@@ -43,7 +55,7 @@ describe('eth-manager v3', () => {
       }
       async balanceOf() {
         try {
-          const superResult = await super.balanceOf(signerAddress);
+          const superResult = await super.balanceOf(constants.AddressZero);
           return superResult.add(1);
         } catch (e) {
           return 'err';
@@ -53,5 +65,8 @@ describe('eth-manager v3', () => {
     const derived = DerivedWETH.get('rinkeby');
     expect(derived.address).to.eql(constants.AddressZero);
     expect(await derived.balanceOf()).to.eql('err');
+  });
+  it('works with a rinkeby deployment', async () => {
+    const factory = Factory.get('rinkeby');
   })
 });

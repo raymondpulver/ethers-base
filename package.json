@@ -1,6 +1,6 @@
 {
   "name": "ethers-base",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "description": "simple ethers base",
   "scripts": {
     "test": "hardhat test"
@@ -11,9 +11,15 @@
   "license": "MIT",
   "private": false,
   "dependencies": {
-    "ethers": "^5.0.19"
+    "@ethersproject/abi": "^5.0.7",
+    "@ethersproject/constants": "^5.0.5",
+    "@ethersproject/contracts": "^5.0.5",
+    "@ethersproject/logger": "^5.0.6",
+    "@ethersproject/properties": "^5.0.4",
+    "@ethersproject/providers": "^5.0.14"
   },
   "devDependencies": {
+    "@primitivefi/contracts": "https://github.com/raymondpulver/primitive-contracts#develop",
     "canonical-weth": "^1.4.0",
     "chai": "^4.2.0",
     "hardhat": "^2.0.2",
