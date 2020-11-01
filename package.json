@@ -1,0 +1,25 @@
+{
+  "name": "ethers-base",
+  "version": "0.3.0",
+  "description": "simple ethers base",
+  "scripts": {
+    "test": "hardhat test"
+  },
+  "main": "lib/ethers-base.js",
+  "repository": "https://gitlab.kool.house/raymondpulver/simple-ethers-base",
+  "author": "Raymond Pulver IV",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "ethers": "^5.0.19"
+  },
+  "devDependencies": {
+    "canonical-weth": "^1.4.0",
+    "chai": "^4.2.0",
+    "hardhat": "^2.0.2",
+    "local-repl": "^4.0.0"
+  },
+  "repl": {
+    "enableAwait": true
+  }
+}
