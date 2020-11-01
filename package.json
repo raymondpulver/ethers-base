@@ -1,6 +1,6 @@
 {
   "name": "ethers-base",
-  "version": "0.3.5",
+  "version": "0.3.6",
   "description": "simple ethers base",
   "scripts": {
     "test": "hardhat test"
