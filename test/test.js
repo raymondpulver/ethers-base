@@ -24,7 +24,11 @@ const Factory = class extends makeEthersBase(FactoryArtifact) {
   }
 };
 
-const WETH = makeEthersBase(require('canonical-weth/build/contracts/WETH9'));
+const WETH = class extends makeEthersBase(require('canonical-weth/build/contracts/WETH9')) {
+  someFn() {
+    return 'ok';
+  }
+}
 
 const provider = new (class extends JsonRpcProvider {})();
 Object.getPrototypeOf(provider).send = testProvider.send.bind(testProvider);
@@ -69,4 +73,9 @@ describe('eth-manager v3', () => {
   it('works with a rinkeby deployment', async () => {
     const factory = Factory.get('rinkeby');
   })
+  it('should create an instance with a factory', async () => {
+    const factory = WETH.getFactory(provider);
+    const weth = await factory.deploy();
+    expect(weth.someFn()).to.eql('ok');
+  });
 });
