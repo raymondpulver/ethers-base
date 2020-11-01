@@ -7,6 +7,7 @@ const {
     provider: testProvider
   }
 } = require('hardhat');
+const constants = require('@ethersproject/constants');
 
 const { JsonRpcProvider } = require('@ethersproject/providers');
 const { makeEthersBase } = require('../');
@@ -31,4 +32,26 @@ describe('eth-manager v3', () => {
     const result = await weth.balanceOf();
     expect(Number(result)).to.eql(1);
   });
+  it('static get(network, provider)', async () => {
+    class DerivedWETH extends WETH {
+      static get networks() {
+        return {
+          '4': {
+            address: constants.AddressZero
+          }
+        }
+      }
+      async balanceOf() {
+        try {
+          const superResult = await super.balanceOf(signerAddress);
+          return superResult.add(1);
+        } catch (e) {
+          return 'err';
+        }
+      }
+    }
+    const derived = DerivedWETH.get('rinkeby');
+    expect(derived.address).to.eql(constants.AddressZero);
+    expect(await derived.balanceOf()).to.eql('err');
+  })
 });
