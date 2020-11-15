@@ -10,7 +10,7 @@
   "author": "Raymond Pulver IV",
   "license": "MIT",
   "private": false,
-  "dependencies": {
+  "peerDependencies": {
     "@ethersproject/abi": "^5.0.7",
     "@ethersproject/constants": "^5.0.5",
     "@ethersproject/contracts": "^5.0.5",
